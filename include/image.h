@@ -10,7 +10,7 @@ typedef struct {
 } Imagem;
 
 Imagem ler_imagem(const char *arq_name);
-void salvar_imagem(const char *arq_name, Imagem img);
+void salvar_imagem();
 
 
 #endif
