@@ -1,0 +1,91 @@
+######  Requerimentos:
+Objectivo principal e' modificar a imagem de maneira reversivel.
+
+- Ler imagem:
+    - Tratar a imagem como uma regiao na memoria de valores
+      numericos continuos (vetor)
+- Modificar imagem:
+  - Confusao: substituir valores individual dos bytes. Cada
+    pixel contem 3  componentes: Vermelho, Verde e Azul (RGB).
+    - O novo byte tem que ser novo valor modificado uma regra matematica 
+      "Regra Autoral"
+    - Valores variam de 0 a 255.
+  - Difusao: Mudar a estrutura inicial, permutar as posicoes dos Requerimentos
+    - Os lugares na memoria desses valores devem mudar. Tem que ser reversivel.
+  - Reversao: Reverter os dados manipulados 100%. Valores tem que ser identicos 
+    nao so a imagem semelhante.
+    **
+    O fluxo de transformação original é: Original -> C (Confusão) -> D (Difusão) ->
+    Bagunçada.
+    **
+
+######  Data:
+typedef struct {
+    int largura;
+    int altura;
+    int max_valor;
+    unsigned char *dados;
+  } imagem;
+  char *dados contem (RGB) = dados[i], dados[i+1], dados[i+2] para cada pixel
+   ou
+  *** 
+
+  typedef struct {
+      unsigned char r, g, b;
+    } pixel;
+
+  ***
+
+Erros:
+- Validar se arquivo abre (fopen)
+- Validar formato (p6)?, 
+- validar header (altura, largura, max_valor (fazer default de 255
+  se nao for especificado))
+- Validar se o arquivo todo foi lido
+- Mensagens de error
+
+######  Interface (main.c):
+    - ler_imagem()
+    - aplicar_confusao() / reverter_confusao()
+    - aplicar_difusao() / reverter_difusao()
+    - salver_imagem()
+    - free()
+
+
+###### Outros:
+
+Headers Arq:
+  - image.h
+    - struct da imagem
+  - criptografia (crypt.h)
+    - Confusao
+        - aplicar_confusao()
+    - Difusao 
+        - aplicar_difusao()
+    - reversao
+      - reverter_difusao()
+      - reverter_confusao()
+  - Input e Output
+    - ler_imagem()
+    - salvar_imagem()
+- makefile
+
+
+- Folders:
+    - src/
+        - codigo em c
+    - include/
+        - headers
+    - build/
+        - exec
+    - docs/
+      - relatorios
+
+
+- Video:
+  - 5-10minutos de video
+
+
+- Extras:
+  - passar parametros com a cli
+  - pedir chave de encrypt do usuario
