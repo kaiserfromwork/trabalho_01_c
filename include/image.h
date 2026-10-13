@@ -7,9 +7,9 @@ typedef struct {
   int max_valor;
   unsigned char *dados;
 
-} Imagem;
+} ImagemPPM;
 
-Imagem ler_imagem(const char *arq_name);
+ImagemPPM ler_imagem(const char *arq_name);
 void salvar_imagem();
 
 

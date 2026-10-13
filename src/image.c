@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include "image.h"
 
-Imagem ler_imagem(const char *nome_arq){
+ImagemPPM ler_imagem(const char *nome_arq){
   FILE *arq;
 
   // Inicializando struct para testes
-  Imagem img = {0, 0, 0, NULL};
+  ImagemPPM img = {0, 0, 0, NULL};
 
   if((arq = fopen(nome_arq, "rb")) == NULL){
     perror("Error");
@@ -17,6 +17,9 @@ Imagem ler_imagem(const char *nome_arq){
 
   char formato[3];
   fscanf(arq, "%2s", formato);
+  // Checking formato
+  printf("\nFormato = %c \n", formato[0]);
+  printf("Formato = %c \n", formato[1]);
   if (formato[0] != 'P' || formato[1] != '6'){
     fprintf(stderr, "Formato invalido (deve ser P6 binario!\n");
     fclose(arq);

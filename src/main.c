@@ -3,9 +3,9 @@
 
 
 int main(){
-  const char *nome_arq = "./docs/hollow_silk.jpeg";
+  const char *nome_arq = "./docs/hollow_silk.ppm";
   
-  Imagem img = ler_imagem(nome_arq);
+  ImagemPPM img = ler_imagem(nome_arq);
 
   free(img.dados);
   
