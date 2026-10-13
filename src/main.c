@@ -1,5 +1,5 @@
 #include "image.h"
-
+#include <stdlib.h>
 
 
 int main(){
@@ -7,6 +7,6 @@ int main(){
   
   Imagem img = ler_imagem(nome_arq);
 
-  free(img.dados)
+  free(img.dados);
   
 }

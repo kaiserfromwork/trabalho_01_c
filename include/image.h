@@ -5,7 +5,7 @@ typedef struct {
   int largura;
   int altura;
   int max_valor;
-  char *dados;
+  unsigned char *dados;
 
 } Imagem;
 
