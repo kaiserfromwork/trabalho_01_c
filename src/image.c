@@ -45,10 +45,29 @@ ImagemPPM ler_imagem(const char *nome_arq){
   if (lidos != total_pixels) {
     fprintf(stderr, "Error ao ler matriz de pixels\n");
   }
+  else {
+    printf("Pixels: %d", total_pixels);
+  }
   
   fclose(arq);
   return img;
 }
 
+
+void salvar_imagemPPM(const char *nome_arq, ImagemPPM img){
+  FILE *arq = fopen(nome_arq, "wb");
+  if (!arq) {
+    perror("Erro ao salver arquivo");
+    exit(EXIT_FAILURE);
+  }
+  //Formato do comeco do arquivo PPM 
+  fprintf(arq, "P6\n%d %d\n%d\n", img.largura, img.altura, img.max_valor);
+  int total_pixels = img.largura * img.altura * 3;
+  fwrite(img.dados, sizeof(unsigned char), total_pixels, arq);
+  printf("\nImagem Salva!");
+  fclose(arq);
+
+
+}
 
 

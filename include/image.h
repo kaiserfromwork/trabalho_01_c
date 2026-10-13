@@ -9,8 +9,8 @@ typedef struct {
 
 } ImagemPPM;
 
-ImagemPPM ler_imagem(const char *arq_name);
-void salvar_imagem();
+ImagemPPM ler_imagem(const char *nome_arq);
+void salvar_imagemPPM(const char *nome_arq, ImagemPPM img);
 
 
 #endif
