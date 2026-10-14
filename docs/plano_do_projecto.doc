@@ -68,6 +68,7 @@ Headers Arq:
   - Input e Output
     - ler_imagem()
     - salvar_imagem()
+
 - makefile
 
 
