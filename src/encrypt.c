@@ -54,3 +54,14 @@ void reverter_fib(unsigned char *fib_prev, unsigned char *fib_curr, unsigned cha
   *fib_prev = *fib_curr;
   *fib_curr = next;
 }
+
+void aplicar_difusao(ImagemPPM img){
+  unsigned char *ptr = img.dados;
+  int total_pixels = img.largura * img.altura;
+
+  unsigned char prev_byte = 0;
+  for(int i = 0; i < total_pixels; i++){
+    ptr[i] = (ptr[i] + prev_byte) % 256;
+    prev_byte = ptr[i];
+  }
+}
