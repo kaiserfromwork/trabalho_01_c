@@ -1,7 +1,7 @@
 CFLAGS = -Wall -g -Iinclude # Warning e debug info, -Iinclude para usar folder include/
 
 PROG = build/main
-FONTES = src/main.c src/image.c
+FONTES = src/main.c src/image.c src/encrypt.c
 
 # Automaticamente mudar os arquivos src/ para build/
 OBJETOS = $(patsubst src/%.c, build/%.o, $(FONTES))
