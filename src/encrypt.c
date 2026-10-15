@@ -59,23 +59,27 @@ void aplicar_difusao(ImagemPPM img){
   unsigned char *ptr = img.dados;
   int total_pixels = img.largura * img.altura * 3;
 
-  unsigned char prev_byte = 0;
-  for(int i = 0; i < total_pixels; i++){
-    ptr[i] = (ptr[i] + prev_byte) % 256;
-    prev_byte = ptr[i];
+  //unsigned char prev_byte = 0;
+  for(int i = 0; i < total_pixels - 20; i+=20){
+    unsigned char bloco[10];
+    for (int k = 0; k < 10; k++){
+      bloco[k] = ptr[k+i];
+    }
+    for (int k = 0; k < 10; k++){
+      ptr[k+i] = ptr[k+i+10];
+    }
+    for (int k = 0; k < 10; k++){
+      ptr[10+k+i] = bloco[k];
+    }
   }
 }
 
+
+
 void reverter_difusao(ImagemPPM img){
-  unsigned char *ptr = img.dados;
+  //unsigned char *ptr = img.dados;
   int total_pixels = img.largura * img.altura * 3;
 
-  unsigned char prev_byte = 0;
   for (int i = 0; i < total_pixels; i++) {
-    // Guardar o byte atual para pode usar na proxima iteracao
-    unsigned char byte_cifrado = ptr[i];
-    ptr[i] = (ptr[i]- prev_byte + 256) % 256;
-
-    prev_byte = byte_cifrado;
   }
 }
