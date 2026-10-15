@@ -2,6 +2,12 @@
 #include <stdlib.h>
 #include "image.h"
 
+/*
+ * Le uma imgaem PPM (P6) do arquivo especificado
+ *
+ * ImagemPPM e' struct usado para salvar dados da imagem no formato .ppm
+ * contem altura, largura, max_valor (255) e dados dos pixels
+ * */
 ImagemPPM ler_imagem(const char *nome_arq){
   FILE *arq;
 
@@ -16,7 +22,7 @@ ImagemPPM ler_imagem(const char *nome_arq){
 
   char formato[3];
   fscanf(arq, "%2s", formato);
-  // Verificando formato
+  // Verificando formato, para poder buscar valores de altura, largura da imagem
   printf("\nFormato = %c \n", formato[0]);
   printf("Formato = %c \n", formato[1]);
   if (formato[0] != 'P' || formato[1] != '6'){
@@ -32,7 +38,8 @@ ImagemPPM ler_imagem(const char *nome_arq){
   }
   ungetc(ch, arq);
   
-  // Ler cabecalho
+  // Ler cabecalho da imagem
+  //Formato do comeco do arquivo PPM, e' preciso manter esse formato especifico para .ppm P6
   fscanf(arq, "%d %d %d", &img.largura, &img.altura, &img.max_valor);
   fgetc(arq);
 
@@ -53,14 +60,16 @@ ImagemPPM ler_imagem(const char *nome_arq){
   return img;
 }
 
-
+/*
+ * Salva imagem PPM usando arquivo espeficicado
+ * */
 void salvar_imagemPPM(const char *nome_arq, ImagemPPM img){
   FILE *arq = fopen(nome_arq, "wb");
   if (!arq) {
-    perror("Erro ao salver arquivo");
+    perror("Erro ao salver arquivo!");
     exit(EXIT_FAILURE);
   }
-  //Formato do comeco do arquivo PPM 
+  //Formato do comeco do arquivo PPM, e' preciso manter esse formato especifico para .ppm P6
   fprintf(arq, "P6\n%d %d\n%d\n", img.largura, img.altura, img.max_valor);
   int total_pixels = img.largura * img.altura * 3;
   fwrite(img.dados, sizeof(unsigned char), total_pixels, arq);
