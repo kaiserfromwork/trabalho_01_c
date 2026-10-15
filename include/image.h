@@ -9,6 +9,7 @@ typedef struct {
 
 } ImagemPPM;
 
+// Le imagem PPM do arquivo especificado, precisa usar free() apos uso
 ImagemPPM ler_imagem(const char *nome_arq);
 void salvar_imagemPPM(const char *nome_arq, ImagemPPM img);
 

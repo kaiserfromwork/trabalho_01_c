@@ -5,19 +5,18 @@
 ImagemPPM ler_imagem(const char *nome_arq){
   FILE *arq;
 
-  // Inicializando struct para testes
-  ImagemPPM img = {0, 0, 0, NULL};
+  ImagemPPM img;
 
   if((arq = fopen(nome_arq, "rb")) == NULL){
     perror("Error");
-    exit(1);
+    exit(EXIT_FAILURE);
   } else {
     printf("Arquivo Lido!");
   }
 
   char formato[3];
   fscanf(arq, "%2s", formato);
-  // Checking formato
+  // Verificando formato
   printf("\nFormato = %c \n", formato[0]);
   printf("Formato = %c \n", formato[1]);
   if (formato[0] != 'P' || formato[1] != '6'){
@@ -44,6 +43,7 @@ ImagemPPM ler_imagem(const char *nome_arq){
   size_t lidos = fread(img.dados, sizeof(unsigned char), total_pixels, arq);
   if (lidos != total_pixels) {
     fprintf(stderr, "Error ao ler matriz de pixels\n");
+    exit(EXIT_FAILURE);
   }
   else {
     printf("Pixels: %d", total_pixels);
