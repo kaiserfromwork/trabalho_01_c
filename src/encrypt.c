@@ -38,7 +38,6 @@ void aplicar_fib(unsigned char *fib_prev, unsigned char *fib_curr, unsigned char
   *fib_prev = *fib_curr;
   *fib_curr = next;
   //printf("Fib: %d\n", next);
-  
 }
 /*
  * Reverte a alteracao feita nos pixels da imagem usando uma formula baseada na
@@ -83,7 +82,7 @@ void aplicar_difusao(ImagemPPM img){
   int total_bytes = img.largura * img.altura * 3;
   
   // <=
-  for(int i = 0; i < total_bytes - 20; i+=20){
+  for(int i = 0; i <= total_bytes - 20; i+=20){
     unsigned char bloco[10];
     for (int k = 0; k < 10; k++){
       bloco[k] = ptr[k+i];
@@ -106,7 +105,7 @@ void reverter_difusao(ImagemPPM img){
   unsigned char *ptr = img.dados;
   int total_bytes = img.largura * img.altura * 3;
 
-  for(int i = 0; i < total_bytes - 20; i+=20){
+  for(int i = 0; i <= total_bytes - 20; i+=20){
     unsigned char bloco[10];
     for (int k = 0; k < 10; k++){
       bloco[k] = ptr[k+i];
